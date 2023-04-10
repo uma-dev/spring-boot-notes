@@ -7,11 +7,13 @@
     - __Dynamic__ -> Content is generated on the fly, and can generate responses based on the input. They interact with users but need more time to process requests, also they are more expensive than static. 
 - **Web application**: High level of interaction with users, they are designed to store, analyze and manipulate data. Implemented using Tomcat
 
-- **SOAP** (Simple Object Access Protocol): Relies on XML, originally developed by Microsoft. It is very extensive, but you must use only the needed pieces. It is intolerant to errors and you have to create the required XML structure every time. 
-- **REST** (Representational State Transfer): It is a lightweight alternative to SOAP, it relies on a simple URL. Output data in the following commands: 
+- **SOAP** (Simple Object Access Protocol): Relies on XML, originally developed by Microsoft. It is very extensive, but you must use only the needed pieces. It is intolerant to errors and you have to create the required XML structure every time. It uses: 
+    - XML (exclusively)
+- **REST** (Representational State Transfer): It is a lightweight and fastest alternative to SOAP, it relies on a simple URL. Output data in the following commands: 
     - CSV
     - JSON
     - RSS
+    - XML
 
 ## Definitions
 
@@ -71,3 +73,17 @@ Additional and optional Spring modules built on top of Spring Framework. You onl
 - Spring Batch, Spring Security 
 - Spring Web Services (SOAP and REST) and Spring LDAP
 - etc 
+
+## Maven 
+
+Its a useful Project management tool for building a Java project. The most popular use if for building management and dependencies. Some problems that Maven solve are: 
+- Automatically download the required JAR files required for the project (on the config file). 
+- Add them to the build path
+- Standard folder structure
+
+### POM.xml 
+
+This file on the root contains three sections: 
+- Project metadata (project name, versions, output file type)
+- Dependencies
+- Plug ins
