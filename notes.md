@@ -19,6 +19,7 @@
 
 - **Boilerplate code**: Unit of repetitive sections of code that have to be included in many places with little or no alteration. 
 - **AOP**: Aspect Oriented Programming.
+- **Spring Bean**: Is a regular Java class that is managed by Spring
 
 ## Deployment
 
@@ -172,3 +173,25 @@ You can find the 1000+ properties list in this [link](https://docs.spring.io/spr
 - Integration 
 - DevTools 
 - Testing
+
+## Inversion of Control
+
+__Spring container__ have primary functions: 
+ - An object factory who manages and create objects (**Inversion of Control**)
+ - Inject object dependencies (**Dependency Injection**)
+ 
+ __Inversion of Control__: Client delegates to another object the responsibility of providing its dependencies
+
+ __Dependency injection__: Spring uses autowiring -> class that match. Multiple types of Dependency injection, covered two of them:
+
+1. Constructor Injection: Generally recommended, used when you have required dependencies  
+    - Define the dependency interface and class (@Component annotation that mark the class as Spring beam)
+    - Create a demo REST controller
+    - Create a constructor in your REST controller class for injection
+    - Add @GetMapping for the endpoint
+2. Setter Injection: Optional dependencies
+
+ There are three methods to Configure the Spring Container: 
+ 1. XML configuration file (legacy)
+ 2. Java Annotations (modern)
+ 3. Java Source Code (modern)
