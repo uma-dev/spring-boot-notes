@@ -136,3 +136,14 @@ A curated list of compatible Maven dependencies, tested  and verified by Spring 
 - Dependency management
     - You use version on parent only
 - Default configuration of Spring boot plugin
+
+## Build and run from command line
+
+You can build your application using either the provided maven program in the downloaded project or by a command if you have Maven installed:
+- ```./mvnw package``` (on root folder)
+- ```mvn package``` (on root folder)
+
+Both commands will produce a jar file in the ```target/``` folder, so you can execute it by: 
+- ```java -jar JAR_FILE``` (on target folder)
+- ```mvn spring-boot:run``` (on  root folder)
+- ```./mvnw spring-boot:run``` (on root folder)
