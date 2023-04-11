@@ -147,3 +147,28 @@ Both commands will produce a jar file in the ```target/``` folder, so you can ex
 - ```java -jar JAR_FILE``` (on target folder)
 - ```mvn spring-boot:run``` (on  root folder)
 - ```./mvnw spring-boot:run``` (on root folder)
+
+## Spring Boot Properties
+
+You can find the 1000+ properties list in this [link](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties), the properties are grouped on the following categories (with some examples): 
+- Core
+    - Log levels
+    - Log file name
+- Web
+    - Port (default 8080)
+    - Context path of the application (default is "/")
+    - Timeout (default 30 min)
+- Security
+    - User name
+    - Password
+- Data
+    - JDBC url of the db
+    - Username of the db
+    - Password of the db
+- Actuator
+    - Endpoints to include
+    - Endpoints to exclude
+    - Base path for actuator endpoints 
+- Integration 
+- DevTools 
+- Testing
