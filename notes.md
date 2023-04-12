@@ -218,6 +218,11 @@ __Spring container__ have primary functions:
 - Beam lifecycle methods
     - Init: @PostConstruct
     - Destroy: @PreDestroy
+- Use an existing third party class in Spring framework
+    - Create @Configuration class
+    - Define @Bean method (to configure the beam)
+    - Inject the bean into the controller with @Autowired
+
 
 ### Bean Scopes 
 
