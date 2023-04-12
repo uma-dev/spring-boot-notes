@@ -20,6 +20,7 @@
 - **Boilerplate code**: Unit of repetitive sections of code that have to be included in many places with little or no alteration. 
 - **AOP**: Aspect Oriented Programming.
 - **Spring Bean**: Is a regular Java class that is managed by Spring
+- **Singleton**: In programming, a singleton is a design pattern that restricts the instantiation of a class to a single instance and provides a global point of access to that instance. In other words, a singleton class ensures that there is only one instance of the class created during the lifetime of the program and provides a way to access that instance from anywhere in the code.
 
 ## Deployment
 
@@ -210,4 +211,28 @@ __Spring container__ have primary functions:
     - @Primary
     - @Qualifier ("lowerCaseClassName")
 - Lazy initialization
-    - @Lazy (you can use a global setting in application.properties)
+    - @Lazy (you can use a global setting in application.properties with ```spring.main.lazy-initialization=true```)
+- Scope
+    - @Scope(ConfigurableBeanFactory.SCOPE_OPTION) 
+    - The optionS for scope are: singleton, prototype, request, session and global-session
+- Beam lifecycle methods
+    - Init: @PostConstruct
+    - Destroy: @PreDestroy
+
+### Bean Scopes 
+
+Scope: refers to the lifecycle of a beam, this is how long does the beam live and how many instances are created.
+
+In Spring, the beam scope is Singleton, but there a lots of options for multiple purposes like: singleton, prototype, request, session and global-session. 
+
+#### The Beam lifecycle
+
+1. Container started: 
+    - Beam Instantiated
+    - Dependency Injection
+    - Internal Spring Processing
+    - Your custom init method
+2. Beam ready for use: 
+    - Your custom destroy method
+
+The beam lifecycle methods allows to add custom code during bean initialization, like call to custom business logic methods, setting up handles to resources (db, sockets, file, etc)
