@@ -185,13 +185,29 @@ __Spring container__ have primary functions:
  __Dependency injection__: Spring uses autowiring -> class that match. Multiple types of Dependency injection, covered two of them:
 
 1. Constructor Injection: Generally recommended, used when you have required dependencies  
-    - Define the dependency interface and class (@Component annotation that mark the class as Spring beam)
+    - Define the dependency interface and class (@Component annotation that mark the class as Spring beam, important detail is that Spring only search in the same folder where is the main application, including sub-folders, but not in other packages)
     - Create a demo REST controller
     - Create a constructor in your REST controller class for injection
     - Add @GetMapping for the endpoint
-2. Setter Injection: Optional dependencies
+2. Setter Injection: Inject dependencies by calling the setter methods of your class. Works with Optional dependencies
 
  There are three methods to Configure the Spring Container: 
  1. XML configuration file (legacy)
  2. Java Annotations (modern)
  3. Java Source Code (modern)
+
+ ### Annotations 
+
+- Which class is the application main program
+    - @SpringBootApplication (initialize some default required modules)
+- Which class is a beam
+    - @Component
+- Which class is a controller
+    - @RestController
+- Dependency injection
+    - @Autowired (setter, field or constructor injection)
+- Which class to use: 
+    - @Primary
+    - @Qualifier ("lowerCaseClassName")
+- Lazy initialization
+    - @Lazy (you can use a global setting in application.properties)
