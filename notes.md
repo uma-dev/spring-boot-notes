@@ -230,7 +230,7 @@ Scope: refers to the lifecycle of a beam, this is how long does the beam live an
 
 In Spring, the beam scope is Singleton, but there a lots of options for multiple purposes like: singleton, prototype, request, session and global-session. 
 
-#### The Beam lifecycle
+#### Beam lifecycle
 
 1. Container started: 
     - Beam Instantiated
@@ -240,4 +240,13 @@ In Spring, the beam scope is Singleton, but there a lots of options for multiple
 2. Beam ready for use: 
     - Your custom destroy method
 
-The beam lifecycle methods allows to add custom code during bean initialization, like call to custom business logic methods, setting up handles to resources (db, sockets, file, etc)
+#### Beam lifecycle methods 
+
+Allows to add custom code during bean initialization, like call to custom business logic methods, setting up handles to resources (db, sockets, file, etc)
+
+#### Add an external class to Spring framework
+
+Use an existing third party class in Spring framework
+    - Create Configuration class
+    - Define Bean method to configure the beam
+    - Inject the bean into the controller
