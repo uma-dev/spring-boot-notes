@@ -255,7 +255,49 @@ Use an existing third party class in Spring framework
 ## Hibernate
 
 Is a framework that handles all of the low-level SQL, it minimizes the JDBC code. 
-Provides Object-to-Relational Mapping (**ORM**). 
+Provides Object-to-Relational Mapping (**ORM**).  Here is a simple snippet: 
+
+```java
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class Example {
+    public static void main(String[] args) {
+        // Create a Hibernate configuration
+        Configuration config = new Configuration()
+                .setProperty("hibernate.connection.driver_class", "org.postgresql.Driver")
+                .setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/your_database_name")
+                .setProperty("hibernate.connection.username", "your_username")
+                .setProperty("hibernate.connection.password", "your_password")
+                .setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
+                .setProperty("hibernate.show_sql", "true")
+                .setProperty("hibernate.hbm2ddl.auto", "update")
+                .addAnnotatedClass(User.class);
+
+        // Create a Hibernate session factory
+        SessionFactory sessionFactory = config.buildSessionFactory();
+
+        // Create a Hibernate session
+        Session session = sessionFactory.openSession();
+
+        // Run a SELECT query using Hibernate Query Language (HQL)
+        List<User> users = session.createQuery("FROM User", User.class).getResultList();
+
+        // Output data of each user
+        for (User user : users) {
+            System.out.println("ID: " + user.getId() + " - Name: " + user.getName() + " - Email: " + user.getEmail());
+        }
+
+        // Close the Hibernate session
+        session.close();
+
+        // Close the Hibernate session factory
+        sessionFactory.close();
+    }
+}
+```
 
 ### ORM
 
@@ -267,7 +309,7 @@ Jakarta Persistance API, previously known as Java Persistance API. It is a **sta
 
 ### JDBC
 
-Java database connectivity. Hibernate / JPA uses JDBC for all database communications, so Hibernate runs in top in JDBC. Here is a sample code: 
+Java database connectivity. Hibernate / JPA uses JDBC for all database communications, so Hibernate runs in top in JDBC. Here is a snippet: 
 
 ```java
 import java.sql.*;
