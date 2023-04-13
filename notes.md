@@ -250,3 +250,57 @@ Use an existing third party class in Spring framework
     - Create Configuration class
     - Define Bean method to configure the beam
     - Inject the bean into the controller
+
+
+## Hibernate
+
+Is a framework that handles all of the low-level SQL, it minimizes the JDBC code. 
+Provides Object-to-Relational Mapping (**ORM**). 
+
+### ORM
+
+Developer defines a mapping between Java __class and database table__
+
+### JPA Specification
+
+Jakarta Persistance API, previously known as Java Persistance API. It is a **standard API for ORM**.  It defines a set of interfaces and requires an implementation to be usable, some frameworks implement JPA such as Hibernate, EclipseLink and OpenJPA
+
+### JDBC
+
+Java database connectivity. Hibernate / JPA uses JDBC for all database communications, so Hibernate runs in top in JDBC. Here is a sample code: 
+
+```java
+import java.sql.*;
+
+public class Example {
+    public static void main(String[] args) {
+        // Database connection parameters
+        String url = "jdbc:postgresql://localhost:5432/your_database_name";
+        String username = "your_username";
+        String password = "your_password";
+
+        // Create a database connection
+        try {
+            Connection conn = DriverManager.getConnection(url, username, password);
+
+            // Run a SELECT query
+            String sql = "SELECT * FROM users";
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+
+            // Output data of each row
+            while (result.next()) {
+                int id = result.getInt("id");
+                String name = result.getString("name");
+                String email = result.getString("email");
+                System.out.println("ID: " + id + " - Name: " + name + " - Email: " + email);
+            }
+
+            // Close the database connection
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("Connection failed: " + e.getMessage());
+        }
+    }
+}
+```
