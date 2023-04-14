@@ -211,7 +211,11 @@ __Spring container__ have primary functions:
     - @Primary
     - @Qualifier ("lowerCaseClassName")
 - Lazy initialization
-    - @Lazy (you can use a global setting in application.properties with ```spring.main.lazy-initialization=true```)
+    - @Lazy (you can use a global setting in application.properties with 
+    ```properties
+    spring.main.lazy-initialization=true
+    ```
+    )
 - Scope
     - @Scope(ConfigurableBeanFactory.SCOPE_OPTION) 
     - The optionS for scope are: singleton, prototype, request, session and global-session
@@ -345,4 +349,31 @@ public class Example {
         }
     }
 }
+```
+
+### Hibernate
+
+In Spring boot, Hibernate is the default implementation of the JPA Specification. The main component used for creating queries is:
+- EntityManager (from JPA). 
+
+The __Automatic data source configuration__  in Spring boot is based on configs/entries from __Maven pom file__, so the framework can create the following beans and then inject them into the app: 
+- DataSource
+- EntityManager
+
+For setting up the project using Spring Initializr you must add the dependencies: 
+1. MySQL/JDBC Driver: 
+```console
+mysql-connector-j
+```
+
+2. Spring Data JPA: 
+```console
+spring-boot-starter-data-jpa
+```
+
+The DB connection is read from the application.properties file showed below: 
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/student_tracker 
+spring.datasource.username=springstudent
+spring.datasource.password=springstudent
 ```
