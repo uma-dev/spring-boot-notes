@@ -21,6 +21,10 @@
 - **AOP**: Aspect Oriented Programming.
 - **Spring Bean**: Is a regular Java class that is managed by Spring
 - **Singleton**: In programming, a singleton is a design pattern that restricts the instantiation of a class to a single instance and provides a global point of access to that instance. In other words, a singleton class ensures that there is only one instance of the class created during the lifetime of the program and provides a way to access that instance from anywhere in the code.
+- **Entity Class**: Java class that is mapped to a database table
+- **snake case**: all letters in lower case, separated with underscores
+- **screaming snake case**: all letters in upper case, separated with underscores
+- **Why SQL uses snake case**: mysql is case insensitive, so one way to do not loose words meaning is using snake case. 
 
 ## Deployment
 
@@ -226,7 +230,20 @@ __Spring container__ have primary functions:
     - Create @Configuration class
     - Define @Bean method (to configure the beam)
     - Inject the bean into the controller with @Autowired
+- Map class to database table
+    - Create a class with public or protected no-argument constructor  (can have more constructors) and the annotation 
+        - @Entity
+    - Give a name to the table. 
+        - @Table(name="class_name_snake_case")
+    - Map fields to database columns
+        - @Id, used to specify the __primary key__. Generate the primary key using: 
+            - ```GenerationType.AUTO```
+            - ```GenerationType.IDENTITY```
+            - ```GenerationType.SEQUENCE```
+            - ```GenerationType.TABLE```
+        - @Column(name="class_name_snake_case") 
 
+-> If not used, the Table and Column name will be the same as Java field and could cause tons of problems in case of refactoring.
 
 ### Bean Scopes 
 
@@ -374,6 +391,11 @@ spring-boot-starter-data-jpa
 The DB connection is read from the application.properties file showed below: 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/student_tracker 
-spring.datasource.username=springstudent
-spring.datasource.password=springstudent
+spring.datasource.username=user
+spring.datasource.password=password
 ```
+ 
+#### Entity class 
+
+It is a Java class that is mapped to a database table. It uses the annotation @Entity. It must have:
+- A public or protected no-argument constructor (the class can have additional constructors). 
