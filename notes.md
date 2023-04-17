@@ -25,6 +25,7 @@
 - **snake case**: all letters in lower case, separated with underscores
 - **screaming snake case**: all letters in upper case, separated with underscores
 - **Why SQL uses snake case**: mysql is case insensitive, so one way to do not loose words meaning is using snake case. 
+- **Data Access Object**: Also known as DAO, it is a common design pattern, is responsible for interfacing with the database
 
 ## Deployment
 
@@ -105,7 +106,7 @@ This file on the root contains three sections:
 Uniquely identify a project also known as GAV.
 - Group ID (name of company, conventionally in reverse domain name)
 - Artifact ID (name of the project)
-- Version **Optional but highly recommended** (specific release version, if its under active development, use -SNAPSHOT )
+- Version **Optional but highly recommended** (specific release version, if its under active development, use -SNAPSHOT. Some packages doesn't need a version since they )
 
 ### Dependencies coordinates
 
@@ -203,6 +204,8 @@ __Spring container__ have primary functions:
 
  ### Annotations 
 
+#### Spring Core 
+
 - Which class is the application main program
     - @SpringBootApplication (initialize some default required modules)
 - Which class is a beam
@@ -230,7 +233,10 @@ __Spring container__ have primary functions:
     - Create @Configuration class
     - Define @Bean method (to configure the beam)
     - Inject the bean into the controller with @Autowired
-- Map class to database table
+    
+#### Hibernate (CRUD)
+
+- __Map class to database table__
     - Create a class with public or protected no-argument constructor  (can have more constructors) and the annotation 
         - @Entity
     - Give a name to the table. 
@@ -241,9 +247,17 @@ __Spring container__ have primary functions:
             - ```GenerationType.IDENTITY```
             - ```GenerationType.SEQUENCE```
             - ```GenerationType.TABLE```
-        - @Column(name="class_name_snake_case") 
+            - Use custom, create implementation of org.hibernate.id.IdentifierGenerator
+        - @Column(name="class_name_snake_case")  -> If not used, the Table and Column name will be the same as Java field and could cause tons of problems in case of refactoring.
 
--> If not used, the Table and Column name will be the same as Java field and could cause tons of problems in case of refactoring.
+- __DAO__  
+    - Create an interface
+    - Define DAO implementation
+        - @Repository: Translates JDBC exceptions
+        - @Autowired: Inject the entity manager
+        - @Override: Override the constructor defined in the interface
+        - @Transactional: Automatically begin and end the transaction for JPA code
+
 
 ### Bean Scopes 
 
@@ -271,7 +285,6 @@ Use an existing third party class in Spring framework
     - Create Configuration class
     - Define Bean method to configure the beam
     - Inject the bean into the controller
-
 
 ## Hibernate
 
@@ -371,9 +384,11 @@ public class Example {
 ### Hibernate
 
 In Spring boot, Hibernate is the default implementation of the JPA Specification. The main component used for creating queries is:
-- EntityManager (from JPA). 
+- EntityManager (from JPA).
 
-The __Automatic data source configuration__  in Spring boot is based on configs/entries from __Maven pom file__, so the framework can create the following beans and then inject them into the app: 
+The __Automatic data source configuration__  in Spring boot is based on configs/entries from __Maven pom file__, this means that **JPA Entity Manager and Data source** are automatically created by Spring Boot based on the file: application.properties.
+
+So the framework can create the following beans and then inject them into the app: 
 - DataSource
 - EntityManager
 
@@ -395,7 +410,16 @@ spring.datasource.username=user
 spring.datasource.password=password
 ```
  
-#### Entity class 
+#### Entity class (JPA)
 
 It is a Java class that is mapped to a database table. It uses the annotation @Entity. It must have:
 - A public or protected no-argument constructor (the class can have additional constructors). 
+
+#### DAO
+
+The DAO or Data Access Object needs a JPA Entity Manager (the main component for saving/retrieving data) and JPA Entity Manager needs a Data source. The steps to implement DAO are: 
+
+1. Define a DAO interface
+2. Define DAO implementation
+    - Inject the entity manager
+3. Update main app
