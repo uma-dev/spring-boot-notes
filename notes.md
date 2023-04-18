@@ -463,7 +463,7 @@ The format of JSON are name-value pairs, **delimited by columns**, the type of v
 - Array, **square brackets [], values delimited by comma**
 - null
 
-### REST protocols
+### REST protocol and Methods
 
 REST is commonly used over HTTP protocol. The equivalent of each CRUD operation in a REST request are: 
 
@@ -473,4 +473,34 @@ REST is commonly used over HTTP protocol. The equivalent of each CRUD operation 
 | GET    |  Read a list or a single entity |
 | PUT    |  Update an existing entity |
 | DELETE |  Delete an existing entity |
+
+### HTTP  Messages
+
+The **Request Message** has 3 main parts 
+- Request line: the HTTP command for the request
+- Header variables: request metadata
+- Message body: contents of message
+
+The **Response Message** hast also 3 main parts
+- Response line: the server protocol and status code
+- Header variables: response metadata
+- Message body: contents of message
+
+### Status code
+
+| Code Range | Description |
+| :----------- | :----------- |
+|100-199|Informational|
+|200-299|Successful|
+|300-399|Redirection|
+|400-499|Client error|
+|500-599|Server error|
+
+### MIME
+
+The message format is described by MIME content type. The basic syntax is type/sub-type, for example:
+- text/html
+- text/plain
+- application/json
+- application/xml
 
