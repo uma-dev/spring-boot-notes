@@ -426,7 +426,7 @@ The DAO or Data Access Object needs a JPA Entity Manager (the main component for
 
 ### Creating tables with code
 
-Not recommended since you can delete (drop) the production database, so it is better for testing and developing environments. The general recommendation is to create tables with **SQL scripts**, but in case you need to setup the auto-creation in accordance to annotations, only need to set the next configuration in application.properties
+**NOT RECOMMENDED** since you can delete (drop) the production database, so it is better for testing and developing environments. The general recommendation is to create tables with **SQL scripts**, but in case you need to setup the auto-creation in accordance to annotations, only need to set the next configuration in application.properties
 
 ```properties
     spring.jpa.hibernate.ddl-auto=PROPERTY-VALUE
