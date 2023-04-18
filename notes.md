@@ -135,7 +135,7 @@ WARNING: __Do not use the src/main/webapp directory when application is packaged
 
 ## Spring boot starters
 
-A curated list of compatible Maven dependencies, tested  and verified by Spring developers. You can add it in Spring Initializr. 
+A curated list of compatible Maven dependencies, tested and verified by Spring developers. You can add it in Spring Initializr. 
 
 ## Spring boot starter parent
 
@@ -152,7 +152,7 @@ You can build your application using either the provided maven program in the do
 
 Both commands will produce a jar file in the ```target/``` folder, so you can execute it by: 
 - ```java -jar JAR_FILE``` (on target folder)
-- ```mvn spring-boot:run``` (on  root folder)
+- ```mvn spring-boot:run``` (on root folder)
 - ```./mvnw spring-boot:run``` (on root folder)
 
 ## Spring Boot Properties
@@ -190,7 +190,7 @@ __Spring container__ have primary functions:
 
  __Dependency injection__: Spring uses autowiring -> class that match. Multiple types of Dependency injection, covered two of them:
 
-1. Constructor Injection: Generally recommended, used when you have required dependencies  
+1. Constructor Injection: Generally recommended, used when you have required dependencies 
     - Define the dependency interface and class (@Component annotation that mark the class as Spring beam, important detail is that Spring only search in the same folder where is the main application, including sub-folders, but not in other packages)
     - Create a demo REST controller
     - Create a constructor in your REST controller class for injection
@@ -248,15 +248,15 @@ __Spring container__ have primary functions:
             - ```GenerationType.SEQUENCE```
             - ```GenerationType.TABLE```
             - Use custom, create implementation of org.hibernate.id.IdentifierGenerator
-        - @Column(name="class_name_snake_case")  -> If not used, the Table and Column name will be the same as Java field and could cause tons of problems in case of refactoring.
+        - @Column(name="class_name_snake_case") -> If not used, the Table and Column name will be the same as Java field and could cause tons of problems in case of refactoring.
 
-- __DAO__  
+- __DAO__ 
     - Create an interface
     - Define DAO implementation
         - @Repository: Translates JDBC exceptions
         - @Autowired: Inject the entity manager
         - @Override: Override the constructor defined in the interface
-        - @Transactional: Automatically begin and end the transaction for JPA code
+        - @Transactional: Automatically begin and end the transaction for JPA code. NOT NEEDED for queries
 
 
 ### Bean Scopes 
@@ -289,7 +289,7 @@ Use an existing third party class in Spring framework
 ## Hibernate
 
 Is a framework that handles all of the low-level SQL, it minimizes the JDBC code. 
-Provides Object-to-Relational Mapping (**ORM**).  Here is a simple snippet: 
+Provides Object-to-Relational Mapping (**ORM**). Here is a simple snippet: 
 
 ```java
 import java.util.List;
@@ -386,7 +386,7 @@ public class Example {
 In Spring boot, Hibernate is the default implementation of the JPA Specification. The main component used for creating queries is:
 - EntityManager (from JPA).
 
-The __Automatic data source configuration__  in Spring boot is based on configs/entries from __Maven pom file__, this means that **JPA Entity Manager and Data source** are automatically created by Spring Boot based on the file: application.properties.
+The __Automatic data source configuration__ in Spring boot is based on configs/entries from __Maven pom file__, this means that **JPA Entity Manager and Data source** are automatically created by Spring Boot based on the file: application.properties.
 
 So the framework can create the following beans and then inject them into the app: 
 - DataSource
@@ -423,3 +423,19 @@ The DAO or Data Access Object needs a JPA Entity Manager (the main component for
 2. Define DAO implementation
     - Inject the entity manager
 3. Update main app
+
+### Creating tables with code
+
+Not recommended since you can delete (drop) the production database, so it is better for testing and developing environments. The general recommendation is to create tables with **SQL scripts**, but in case you need to setup the auto-creation in accordance to annotations, only need to set the next configuration in application.properties
+
+```properties
+    spring.jpa.hibernate.ddl-auto=PROPERTY-VALUE
+```
+
+whit one of the following options: 
+- none
+- create-only 
+- drop (delete)
+- create-drop (drop on shutdown)
+- validate (validate db tables schema)
+- update (add any new fields)
