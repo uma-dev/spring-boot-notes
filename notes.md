@@ -210,7 +210,7 @@ __Spring container__ have primary functions:
     - @SpringBootApplication (initialize some default required modules)
 - Which class is a beam
     - @Component
-- Which class is a controller
+- Which class is a REST controller
     - @RestController
 - Dependency injection
     - @Autowired (setter, field or constructor injection)
@@ -257,6 +257,14 @@ __Spring container__ have primary functions:
         - @Autowired: Inject the entity manager
         - @Override: Override the constructor defined in the interface
         - @Transactional: Automatically begin and end the transaction for JPA code. NOT NEEDED for queries
+
+#### REST CRUD API
+
+- __REST__
+    - @RestController: Add REST support
+    - @RequestMapping("/test")
+    - @GetMapping("/hello")
+
 
 
 ### Bean Scopes 
