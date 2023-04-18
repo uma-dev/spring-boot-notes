@@ -286,6 +286,8 @@ Use an existing third party class in Spring framework
     - Define Bean method to configure the beam
     - Inject the bean into the controller
 
+--------
+
 ## Hibernate
 
 Is a framework that handles all of the low-level SQL, it minimizes the JDBC code. 
@@ -439,3 +441,36 @@ whit one of the following options:
 - create-drop (drop on shutdown)
 - validate (validate db tables schema)
 - update (add any new fields)
+
+-------
+
+## REST API
+
+Also known as REST web service REST service RESTful API RESTful web service. They provide information at a endpoint. 
+
+### JSON
+
+One popular way they communicate REST API is using JSON format (JavaScript Object Notation), because it is: 
+    - lightweight
+    - language independent 
+    - simple (is just plain text data). 
+
+The format of JSON are name-value pairs, **delimited by columns**, the type of values are: 
+- Strings, always inside **double-quotes**
+- Numbers, **no quotes**
+- Boolean, **true or false**
+- Nested, **one item inside other**
+- Array, **square brackets [], values delimited by comma**
+- null
+
+### REST protocols
+
+REST is commonly used over HTTP protocol. The equivalent of each CRUD operation in a REST request are: 
+
+| HTTP Method  | CRUD Operation |
+| :----------- | :----------- |
+| POST   | Create a new entity  |
+| GET    |  Read a list or a single entity |
+| PUT    |  Update an existing entity |
+| DELETE |  Delete an existing entity |
+
