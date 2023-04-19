@@ -271,6 +271,13 @@ __Spring container__ have primary functions:
     - @GetMapping("/students/{studentId}")
     - method (@PathVariable int studentId)
 
+- __Exception handler__
+    - Create custom error response class
+    - Create custom exception class
+    - Update REST service to throw exception if student not found
+    - Add an exception handler 
+        - @ExceptionHandler
+
 
 ### Bean Scopes 
 
