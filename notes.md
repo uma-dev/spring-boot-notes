@@ -265,7 +265,11 @@ __Spring container__ have primary functions:
     - @RequestMapping("/test")
     - @GetMapping("/hello")
 
-- 
+- __Path Variable__
+    - @RestController: Add REST support
+    - @RequestMapping("/api")
+    - @GetMapping("/students/{studentId}")
+    - method (@PathVariable int studentId)
 
 
 ### Bean Scopes 
@@ -512,6 +516,18 @@ The message format is described by MIME content type. The basic syntax is type/s
 - text/plain
 - application/json
 - application/xml
+
+### Path Variables 
+
+You can retrieve a single object at an endpoint using a Path variable inside curly braces: 
+
+```/api/students/0```
+
+```/api/students/1```
+
+```/api/students/{studentId}``` 
+
+
 
 ### Data Binding
 
