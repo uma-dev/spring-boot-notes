@@ -274,10 +274,16 @@ __Spring container__ have primary functions:
 - __Exception handler__
     - Create custom error response class
     - Create custom exception class
-    - Update REST service to throw exception if student not found
-    - Add an exception handler 
+    - Update REST service to **throw** exception if student not found
+    - Add an exception handler in the REST class
         - @ExceptionHandler
 
+- __Global Exception Handling__ 
+    - Use the interceptor/filter
+        - @ControllerAdvice
+    - Refactor REST service (remove exception handling)
+    - Add exception handling code to Controller Advice 
+        - @ControllerAdvice
 
 ### Bean Scopes 
 
@@ -547,4 +553,6 @@ Spring uses Jackson project behind the scenes to do data-binding. Its dependency
 When JSON data is being passed to REST controller is converted to POJO and when a Java object is being returned from REST controller is converted to JSON automatically.
 
 Behind the scenes, what Jackson do is make calls to getters and setters depending if you want to do serialization or deserialization. 
+
+### Exception Handling
 
