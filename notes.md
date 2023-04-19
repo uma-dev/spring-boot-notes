@@ -260,11 +260,12 @@ __Spring container__ have primary functions:
 
 #### REST CRUD API
 
-- __REST__
+- __REST Controller__
     - @RestController: Add REST support
     - @RequestMapping("/test")
     - @GetMapping("/hello")
 
+- 
 
 
 ### Bean Scopes 
@@ -511,4 +512,16 @@ The message format is described by MIME content type. The basic syntax is type/s
 - text/plain
 - application/json
 - application/xml
+
+### Data Binding
+
+The process to converting from JSON to a Java POJO and vice versa. It also know as:
+- Serialization / Deserialization
+- Marshalling / Unmarshalling
+
+Spring uses Jackson project behind the scenes to do data-binding. Its dependency is included in __Spring Web__. Also, you must have the setter methods of the class implemented, in order to allow Jackson to use them. 
+
+When JSON data is being passed to REST controller is converted to POJO and when a Java object is being returned from REST controller is converted to JSON automatically.
+
+Behind the scenes, what Jackson do is make calls to getters and setters depending if you want to do serialization or deserialization. 
 
