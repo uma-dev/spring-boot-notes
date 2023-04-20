@@ -581,4 +581,25 @@ Process
 
 - Don't add actions  at endpoints: 
     - /api/addEmployees, /api/deleteEmployees, etc. 
-- 
+
+### Development process
+
+Dependencies in Spring Initializr:
+1. MySQL driver
+2. Spring Boot DevTools
+3. Spring Data JPA
+4. Spring Web
+
+Packages and classes
+- /rest
+- /entity
+- /dao
+- MainApplication.java
+
+Development process 
+1. Update db configs in application.properties
+2. Create employee entity inside package
+3. Create DAO interface
+4. Create DAO implementation
+5. Create REST controller
+5. Inject the DAO implementation in REST controller and expose the method 
