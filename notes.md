@@ -532,7 +532,7 @@ The message format is described by MIME content type. The basic syntax is type/s
 
 ### Path Variables 
 
-You can retrieve a single object at an endpoint using a Path variable inside curly braces: 
+You can retrieve a single object at an endpoint using a Path variable inside curly braces ```{variable}``` or we can use ```:variable```
 
 ```/api/students/0```
 
