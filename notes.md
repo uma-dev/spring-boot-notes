@@ -554,5 +554,31 @@ When JSON data is being passed to REST controller is converted to POJO and when 
 
 Behind the scenes, what Jackson do is make calls to getters and setters depending if you want to do serialization or deserialization. 
 
-### Exception Handling
+### REST API Design 
 
+#### Best Practices
+
+Identify: 
+
+1. Who will use the API
+2. How will they use the API
+3. Design the API based on the requirements
+
+Process 
+1. Review the requirements 
+    - Enlist requirements
+    - Does it needs full CRUD support?
+2. Identify the main resource/ entity
+    - The convention is to use plural form of resource in the example -> entity: employees. So the endpoint should look like ```/api/employees```
+3. Use HTTP methods to assign actions on resource (CRUD)
+    - POST at /api/employees
+    - GET (all employees)  at /api/employees
+    - GET (one employee) at /api/employees/{employeeId}
+    - PUT at /api/employees/{employeeId}
+    - DELETE at /api/employees/{employeeId}
+
+#### Bad Practices 
+
+- Don't add actions  at endpoints: 
+    - /api/addEmployees, /api/deleteEmployees, etc. 
+- 
