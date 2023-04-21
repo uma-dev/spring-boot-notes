@@ -632,3 +632,19 @@ Another best practices in the service layers:
 To avoid boiler plate code exposing entities, you  can use the JpaRepository interface and obtain full CRUD support by **inheritance**. The development process is: 
 
 - Extend the interface, doesn't need implementation since the Repository interfaces are being implemented (backed up) by Spring Container at Runtime.
+
+### Spring Data REST 
+
+The easiest way to implement the API is by using the POM file. There is no code required and Spring Data scan for JpaRepository. you only need to add the dependency: 
+
+``` xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-rest</artifactId>
+</dependency>
+```
+
+The general 3 requirements are: 
+1. Your entity
+2. JpaRepository
+3. Maven POM dependency for  ```spring-boot-starter-data-rest```
