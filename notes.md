@@ -262,8 +262,9 @@ __Spring container__ have primary functions:
 
 - __REST Controller__
     - @RestController: Add REST support
-    - @RequestMapping("/test")
-    - @GetMapping("/hello")
+    - @RequestMapping("/api")
+    - @GetMapping("/entities")
+    - @PostMapping("/entities")
 
 - __Path Variable__
     - @RestController: Add REST support
@@ -271,12 +272,24 @@ __Spring container__ have primary functions:
     - @GetMapping("/students/{studentId}")
     - method (@PathVariable int studentId)
 
+- __Request Body__
+    - @RestController: Add REST support
+    - @RequestMapping("/api")
+    - @PostMapping("/students/{studentId}")
+    - method (@RequestBody Object theObject)
+
 - __Exception handler__
     - Create custom error response class
     - Create custom exception class
     - Update REST service to **throw** exception if student not found
     - Add an exception handler in the REST class
         - @ExceptionHandler
+
+- __Service__
+    - Define an interface
+    - Define an implementation
+        - Inject the DAO 
+    - Apply @Transactional on service methods and remove if there are any in the DAO methods   
 
 - __Global Exception Handling__ 
     - Use the interceptor/filter
@@ -603,3 +616,19 @@ Development process
 4. Create DAO implementation
 5. Create REST controller
 5. Inject the DAO implementation in REST controller and expose the method 
+
+### Service layer
+Uses __Service Facade__ design pattern. It is also a good practice even if you will integrate only one data source.
+
+The service layer acts as a Intermediate layer for custom business logic. It integrates data from multiple backend sources such as: 
+- DAO
+- Repositories
+
+Another best practices in the service layers: 
+- Apply transactional boundaries at the service layer
+
+### JPA Repository
+
+To avoid boiler plate code exposing entities, you  can use the JpaRepository interface and obtain full CRUD support by **inheritance**. The development process is: 
+
+- Extend the interface, doesn't need implementation since the Repository interfaces are being implemented (backed up) by Spring Container at Runtime.
