@@ -648,3 +648,12 @@ The general 3 requirements are:
 1. Your entity
 2. JpaRepository
 3. Maven POM dependency for  ```spring-boot-starter-data-rest```
+
+The REST endpoints are HATEOAS compliant: 
+
+__HATEOAS__ (Hypermedia as the Engine of Application State) is a principle of RESTful architecture that suggests a client should interact with a web service by navigating through hypermedia links dynamically provided by the server.
+
+Some  of the advanced features are: 
+- Pagination, sorting and searching
+- Extending and adding custom queries with JPQL
+- Query Domain Specific  Language (Query DSL)
