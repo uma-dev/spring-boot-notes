@@ -635,7 +635,7 @@ To avoid boiler plate code exposing entities, you  can use the JpaRepository int
 
 ### Spring Data REST 
 
-The easiest way to implement the API is by using the POM file. There is no code required and Spring Data scan for JpaRepository. you only need to add the dependency: 
+The easiest way to implement the API is by using the POM file. There is no code required and Spring Data scan for JpaRepository and expose the entities in __simple pluralized form__ (Employee -> employees, but it **will not handle automatically:** person -> people ). you only need to add the dependency: 
 
 ``` xml
 <dependency>
@@ -657,3 +657,18 @@ Some  of the advanced features are:
 - Pagination, sorting and searching
 - Extending and adding custom queries with JPQL
 - Query Domain Specific  Language (Query DSL)
+
+#### Id managing
+
+One important detail is that Spring Data REST doesn't use ID in the JSON, only in the URL!
+
+#### Sorting
+
+To sort you must add the following to the URL: 
+- By last name, ascending (default): ```http://localhost:8080/employees?sort=lastName```
+- By last name, descending ```http://localhost:8080/employees?sort=lastName,desc```
+- By last name and the by first name, ascending ```http://localhost:8080/employees?sort=lastName,firstName,asc```
+
+#### Page size 
+
+You can add the configurations in the file application.properties
