@@ -682,10 +682,42 @@ To sort you must add the following to the URL:
 
 You can add the configurations in the file application.properties
 
-#### Spring security Login Process
+#### Spring security Login Process JDBC
 
 1. Retrieve password each login from db
+    - Custom created tables
+    - Tables with Spring security schema
 2. Read encoding algorithm
 3. For case of bcrypt, encrypt plain text from login form 
 4. Compare encrypted password with db password
 5. Login if theres a match
+
+
+## Thymeleaf
+
+Thymeleaf expression can access Java code, objects and Spring beans.
+Its executed on the server side, so the results are included in the HTML returned to the browser, also supports the following features: 
+- Looping and conditionals
+- CSS and Javascript integration
+- Templates layouts and fragments
+
+The development process is: 
+
+1. Add Thymeleaf to the maven POM file or add it in Spring Initializr
+2. Develop Spring MVC Controller
+    - Thymeleaf template files go in: src/main/resources/templates
+    - For Web apps, the Thymeleaf templates have a .html extension
+3. Create Thymeleaf template 
+    - Create CSS file
+        - locally in ```/src/main/resources/static/css/file.css```
+        - or reference remotely in the template 
+        - or use bootstrap locally or remotely ```/src/main/resources/static/css/bootstrap.min.css```
+    - Reference CSS in Thymeleaf template with ```th: href=@{/css/file.css}```
+    - Apply the style with: ```class = myclass.css```
+
+Spring Boot search in the following directories for static resources (in order): 
+
+1. /META-INF/resources
+2. /resources
+3. /static (most used in real-time projects)
+4. /public (most used in real-time projects)
