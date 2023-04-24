@@ -298,6 +298,15 @@ __Spring container__ have primary functions:
     - Add exception handling code to Controller Advice 
         - @ControllerAdvice
 
+- __Declarative Security__
+    - Edit pom.xml (add spring-boot-starter-security)
+    - Define security constrains
+    - Add Java config class 
+        - @Configuration
+    - Add users, passwords and roles
+        - Add support for db for a UserDetailsManager funtion with annotation @Bean 
+            - Bean
+
 ### Bean Scopes 
 
 Scope: refers to the lifecycle of a beam, this is how long does the beam live and how many instances are created.
@@ -672,3 +681,11 @@ To sort you must add the following to the URL:
 #### Page size 
 
 You can add the configurations in the file application.properties
+
+#### Spring security Login Process
+
+1. Retrieve password each login from db
+2. Read encoding algorithm
+3. For case of bcrypt, encrypt plain text from login form 
+4. Compare encrypted password with db password
+5. Login if theres a match
