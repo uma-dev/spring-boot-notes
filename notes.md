@@ -304,7 +304,7 @@ __Spring container__ have primary functions:
     - Add Java config class 
         - @Configuration
     - Add users, passwords and roles
-        - Add support for db for a UserDetailsManager funtion with annotation @Bean 
+        - Add support for db tables that contain users and roles for a UserDetailsManager function with annotation @Bean 
             - Bean
 
 ### Bean Scopes 
@@ -691,6 +691,8 @@ You can add the configurations in the file application.properties
 3. For case of bcrypt, encrypt plain text from login form 
 4. Compare encrypted password with db password
 5. Login if theres a match
+
+You can connect additional security configurations to extend Spring security, also you can add your custom login form instead of the default provided by Spring security.
 
 
 ## Thymeleaf
