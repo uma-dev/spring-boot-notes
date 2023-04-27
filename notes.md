@@ -237,7 +237,7 @@ __Spring container__ have primary functions:
 #### Hibernate (CRUD)
 
 - __Map class to database table__
-    - Create a class with public or protected no-argument constructor  (can have more constructors) and the annotation 
+    - Create a class with public or protected no-argument constructor (can have more constructors) and the annotation 
         - @Entity
     - Give a name to the table. 
         - @Table(name="class_name_snake_case")
@@ -517,12 +517,12 @@ REST is commonly used over HTTP protocol. The equivalent of each CRUD operation 
 
 | HTTP Method  | CRUD Operation |
 | :----------- | :----------- |
-| POST   | Create a new entity  |
+| POST   | Create a new entity |
 | GET    |  Read a list or a single entity |
 | PUT    |  Update an existing entity |
 | DELETE |  Delete an existing entity |
 
-### HTTP  Messages
+### HTTP Messages
 
 The **Request Message** has 3 main parts 
 - Request line: the HTTP command for the request
@@ -594,14 +594,14 @@ Process
     - The convention is to use plural form of resource in the example -> entity: employees. So the endpoint should look like ```/api/employees```
 3. Use HTTP methods to assign actions on resource (CRUD)
     - POST at /api/employees
-    - GET (all employees)  at /api/employees
+    - GET (all employees) at /api/employees
     - GET (one employee) at /api/employees/{employeeId}
     - PUT at /api/employees/{employeeId}
     - DELETE at /api/employees/{employeeId}
 
 #### Bad Practices 
 
-- Don't add actions  at endpoints: 
+- Don't add actions at endpoints: 
     - /api/addEmployees, /api/deleteEmployees, etc. 
 
 ### Development process
@@ -638,7 +638,7 @@ Another best practices in the service layers:
 
 ### JPA Repository
 
-To avoid boiler plate code exposing entities, you  can use the JpaRepository interface and obtain full CRUD support by **inheritance**. The development process is: 
+To avoid boiler plate code exposing entities, you can use the JpaRepository interface and obtain full CRUD support by **inheritance**. The development process is: 
 
 - Extend the interface, doesn't need implementation since the Repository interfaces are being implemented (backed up) by Spring Container at Runtime.
 
@@ -693,7 +693,6 @@ You can add the configurations in the file application.properties
 5. Login if theres a match
 
 You can connect additional security configurations to extend Spring security, also you can add your custom login form instead of the default provided by Spring security.
-
 
 ## Thymeleaf
 
