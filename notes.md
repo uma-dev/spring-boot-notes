@@ -713,7 +713,7 @@ The development process is:
         - locally in ```/src/main/resources/static/css/file.css```
         - or reference remotely in the template 
         - or use bootstrap locally or remotely ```/src/main/resources/static/css/bootstrap.min.css```
-    - Reference CSS in Thymeleaf template with ```th: href=@{/css/file.css}```
+    - Reference CSS in Thymeleaf template with a href to the **Context path/Context root** (Best practice in the industry is to use reference to the context path dynamically instead of hard coding the the context path) ```th: href=@{/css/file.css}```
     - Apply the style with: ```class = myclass.css```
 
 Spring Boot search in the following directories for static resources (in order): 
