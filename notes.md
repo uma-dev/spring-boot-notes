@@ -307,6 +307,16 @@ __Spring container__ have primary functions:
         - Add support for db tables that contain users and roles for a UserDetailsManager function with annotation @Bean 
             - Bean
 
+------
+
+- __Validation__ 
+    - @NotNull
+    - @Min
+    - @Max
+    - @Size
+    - @Pattern
+    - @Future / @Past
+
 ### Bean Scopes 
 
 Scope: refers to the lifecycle of a beam, this is how long does the beam live and how many instances are created.
@@ -722,3 +732,13 @@ Spring Boot search in the following directories for static resources (in order):
 2. /resources
 3. /static (most used in real-time projects)
 4. /public (most used in real-time projects)
+
+
+## Validation
+
+Bean Validation Features: 
+- Required
+- Validate length
+- Validate numbers
+- Validate with regular expressions
+- Custom validation
