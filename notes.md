@@ -293,8 +293,9 @@ __Spring container__ have primary functions:
 - __Service__
     - Define an interface
     - Define an implementation
-        - Inject the DAO 
-    - Apply @Transactional on service methods and remove if there are any in the DAO methods   
+        - Inject the DAO or Repository
+        - Apply @Service to the implementation (These class files are used to write business logic in a different layer, separated from @RestController class)  
+        - Apply @Transactional on service methods and remove if there are any in the DAO methods   
 
 - __Global Exception Handling__ 
     - Use the interceptor/filter
