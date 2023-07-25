@@ -179,6 +179,10 @@ You can find the 1000+ properties list in this [link](https://docs.spring.io/spr
 - Integration 
 - DevTools 
 - Testing
+- **Profiles**: You can set profiles to control
+    - which beans are loaded into Spring’s application context
+    - connection strings to databases
+    - URLs to external systems
 
 ## Inversion of Control
 
