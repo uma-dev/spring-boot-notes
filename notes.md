@@ -800,9 +800,14 @@ Depending on the request matchers and configuration you can restrict URL acces b
 Using hibernate provides the following relations for ORM:
 
 - One to one
+  - `@OneToOne` annotation
 - One to many
 - Many to one
 - Many to many
+
+Also you can join tables with the anntation:
+
+- `JoinColumn(name = "column to join")`
 
 It also supports cascade for deleting/saving, fine grained cascade configurations and unidirectional/bidirectional relations.
 
@@ -812,3 +817,13 @@ When retrieving data we can use:
 
 - Eager (**retrieve all data**)
 - Lazy loading (**retrieve data on request**)
+
+### Entity Lifecycle
+
+| Operations | Description                             |
+| ---------- | --------------------------------------- |
+| DETACH     | Not associated with a Hibernate session |
+| MERGE      | Return from detached to reattach        |
+| PERSIST    | From new instances to managed state     |
+| REMOVE     | From managed to be removed              |
+| REFRESH    | Reload object with data                 |
