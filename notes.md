@@ -827,3 +827,6 @@ When retrieving data we can use:
 | PERSIST    | From new instances to managed state     |
 | REMOVE     | From managed to be removed              |
 | REFRESH    | Reload object with data                 |
+
+    
+![entityLifecycle](https://github.com/uma-dev/spring-boot-notes/assets/22565959/2f921086-7d94-4404-978a-b2ee5e99845d)
