@@ -801,6 +801,12 @@ Using hibernate provides the following relations for ORM:
 
 - One to one
   - `@OneToOne` annotation
+  - `@OneToOne(cascade=CascadeType.ALL)` is a better fit if you want cascade operations. **By default no operations are cascade**
+    - CascadeType.DETACH
+    - CascadeType.MERGE
+    - CascadeType.PERSIST
+    - CascadeType.REFRESH
+    - CascadeType.REMOVE
 - One to many
 - Many to one
 - Many to many
@@ -828,5 +834,4 @@ When retrieving data we can use:
 | REMOVE     | From managed to be removed              |
 | REFRESH    | Reload object with data                 |
 
-    
 ![entityLifecycle](https://github.com/uma-dev/spring-boot-notes/assets/22565959/2f921086-7d94-4404-978a-b2ee5e99845d)
