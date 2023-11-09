@@ -817,6 +817,18 @@ Also you can join tables with the anntation:
 
 It also supports cascade for deleting/saving, fine grained cascade configurations and unidirectional/bidirectional relations.
 
+**Examples**
+
+```java
+    @OneToOne
+    @JoinColumn(name="schedule_id")
+    private Schedule schedule;
+
+    @OneToOne
+    @JoinColumn(name="issue_id")
+    private Issue issue;
+```
+
 ### Fetch types
 
 When retrieving data we can use:
