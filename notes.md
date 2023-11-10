@@ -802,8 +802,7 @@ Using hibernate provides the following relations for ORM:
 - One to one
   - `@OneToOne` annotation
   - `@OneToOne(cascade=CascadeType.ALL)` is a better fit if you want cascade operations. **By default no operations are cascade**
-- One to one bidirectional
-    - @OneToOne(mappedBy="idMapped") (see examples)
+  - @OneToOne(mappedBy="idMapped") (One to one bidirectional, see examples)
 - One to many
 - Many to one
 - Many to many
