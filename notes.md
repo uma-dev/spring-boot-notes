@@ -802,31 +802,57 @@ Using hibernate provides the following relations for ORM:
 - One to one
   - `@OneToOne` annotation
   - `@OneToOne(cascade=CascadeType.ALL)` is a better fit if you want cascade operations. **By default no operations are cascade**
-    - CascadeType.DETACH
-    - CascadeType.MERGE
-    - CascadeType.PERSIST
-    - CascadeType.REFRESH
-    - CascadeType.REMOVE
+- One to one bidirectional
+    - @OneToOne(mappedBy="idMapped") (see examples)
 - One to many
 - Many to one
 - Many to many
 
-Also you can join tables with the anntation:
+### Joins
+Also you can join tables with the annotation:
 
 - `JoinColumn(name = "column to join")`
 
+### Cascade
+You can cascade operations with: 
+- CascadeType.DETACH
+- CascadeType.MERGE
+- CascadeType.PERSIST
+- CascadeType.REFRESH
+- CascadeType.REMOVE
+
 It also supports cascade for deleting/saving, fine grained cascade configurations and unidirectional/bidirectional relations.
 
-**Examples**
+### Examples
+#### One to One
 
+![onetoone](https://github.com/uma-dev/spring-boot-notes/assets/22565959/a28c82b4-2e3b-450e-a227-5bd07016161d)
+
+1. Simple one to one relationship wih cascade
 ```java
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="schedule_id")
     private Schedule schedule;
 
-    @OneToOne
-    @JoinColumn(name="issue_id")
-    private Issue issue;
+```
+
+2. Bidirectional relationship with cascade
+
+```java
+    public class Schedule {
+      ... 
+      @OneToOne(cascade=CascadeType.ALL)
+      @JoinColumn(name="schedule_detail_id")
+      private ScheduleDetail scheduleDetail;
+      ...
+    }
+
+    public class ScheduleDetail {
+      ... 
+      @OneToOne(mappedBy="scheduleDetail")
+      private Schedule schedule;
+      ...
+    }
 ```
 
 ### Fetch types
@@ -836,7 +862,7 @@ When retrieving data we can use:
 - Eager (**retrieve all data**)
 - Lazy loading (**retrieve data on request**)
 
-### Entity Lifecycle
+## Entity Lifecycle
 
 | Operations | Description                             |
 | ---------- | --------------------------------------- |
