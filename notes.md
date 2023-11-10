@@ -823,11 +823,11 @@ You can cascade operations with:
 It also supports cascade for deleting/saving, fine grained cascade configurations and unidirectional/bidirectional relations.
 
 ### Examples
-#### One to One
+#### One to one
 
-![onetoone](https://github.com/uma-dev/spring-boot-notes/assets/22565959/a28c82b4-2e3b-450e-a227-5bd07016161d)
+![OneToOne](https://github.com/uma-dev/spring-boot-notes/assets/22565959/3acf20a3-eab4-4aba-8efc-66d2f824c7f0)
 
-1. Simple one to one relationship wih cascade
+1. Simple one to one relationship with cascade
 ```java
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="schedule_id")
@@ -848,8 +848,35 @@ It also supports cascade for deleting/saving, fine grained cascade configuration
 
     public class ScheduleDetail {
       ... 
-      @OneToOne(mappedBy="scheduleDetail")
+      @OneToOne(mappedBy="scheduleDetail", cascade=CascadeType.ALL)
       private Schedule schedule;
+      ...
+    }
+```
+
+#### One to many
+
+![OneToMany](https://github.com/uma-dev/spring-boot-notes/assets/22565959/7a6f40c6-d272-406a-ac99-b770417b4d4e)
+
+1. Bidirectional relationship with cascade
+
+```java
+    public class Course {
+      ...
+      // Do not cascade delete operations (bussines rule)
+      @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE,
+                          CascadeType.DETACH, CascadeType.REFRESH})
+      @JoinColumn(name="instructor_id")
+      private Instructor instructor;
+      ...
+    }
+
+    public class Instructor {
+      ... 
+      @OneToMany(mappedBy="instructor",
+                 cascade={CascadeType.PERSIST, CascadeType.MERGE,
+                          CascadeType.DETACH, CascadeType.REFRESH})
+      private List<Course> courses;
       ...
     }
 ```
