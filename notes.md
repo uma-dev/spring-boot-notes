@@ -830,8 +830,8 @@ It also supports cascade for deleting/saving, fine grained cascade configuration
 1. Simple one to one relationship with cascade
 ```java
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="schedule_id")
-    private Schedule schedule;
+    @JoinColumn(name="schedule_detail_id")
+    private ScheduleDetail scheduleDetail;
 
 ```
 
