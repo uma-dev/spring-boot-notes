@@ -370,49 +370,7 @@ Use an existing third party class in Spring framework - Create Configuration cla
 ## Hibernate
 
 Is a framework that handles all of the low-level SQL, it minimizes the JDBC code.
-Provides Object-to-Relational Mapping (**ORM**). Here is a simple snippet:
-
-```java
-import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
-public class Example {
-    public static void main(String[] args) {
-        // Create a Hibernate configuration
-        Configuration config = new Configuration()
-                .setProperty("hibernate.connection.driver_class", "org.postgresql.Driver")
-                .setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/your_database_name")
-                .setProperty("hibernate.connection.username", "your_username")
-                .setProperty("hibernate.connection.password", "your_password")
-                .setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
-                .setProperty("hibernate.show_sql", "true")
-                .setProperty("hibernate.hbm2ddl.auto", "update")
-                .addAnnotatedClass(User.class);
-
-        // Create a Hibernate session factory
-        SessionFactory sessionFactory = config.buildSessionFactory();
-
-        // Create a Hibernate session
-        Session session = sessionFactory.openSession();
-
-        // Run a SELECT query using Hibernate Query Language (HQL)
-        List<User> users = session.createQuery("FROM User", User.class).getResultList();
-
-        // Output data of each user
-        for (User user : users) {
-            System.out.println("ID: " + user.getId() + " - Name: " + user.getName() + " - Email: " + user.getEmail());
-        }
-
-        // Close the Hibernate session
-        session.close();
-
-        // Close the Hibernate session factory
-        sessionFactory.close();
-    }
-}
-```
+Provides Object-to-Relational Mapping (**ORM**).
 
 ### ORM
 
@@ -808,12 +766,15 @@ Using hibernate provides the following relations for ORM:
 - Many to many
 
 ### Joins
+
 Also you can join tables with the annotation:
 
 - `JoinColumn(name = "column to join")`
 
 ### Cascade
-You can cascade operations with: 
+
+You can cascade operations with:
+
 - CascadeType.DETACH
 - CascadeType.MERGE
 - CascadeType.PERSIST
@@ -823,11 +784,13 @@ You can cascade operations with:
 It also supports cascade for deleting/saving, fine grained cascade configurations and unidirectional/bidirectional relations.
 
 ### Examples
+
 #### One to one
 
 ![OneToOne](https://github.com/uma-dev/spring-boot-notes/assets/22565959/3acf20a3-eab4-4aba-8efc-66d2f824c7f0)
 
 1. Simple one to one relationship with cascade
+
 ```java
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="schedule_detail_id")
@@ -839,7 +802,7 @@ It also supports cascade for deleting/saving, fine grained cascade configuration
 
 ```java
     public class Schedule {
-      ... 
+      ...
       @OneToOne(cascade=CascadeType.ALL)
       @JoinColumn(name="schedule_detail_id")
       private ScheduleDetail scheduleDetail;
@@ -847,7 +810,7 @@ It also supports cascade for deleting/saving, fine grained cascade configuration
     }
 
     public class ScheduleDetail {
-      ... 
+      ...
       @OneToOne(mappedBy="scheduleDetail", cascade=CascadeType.ALL)
       private Schedule schedule;
       ...
@@ -872,7 +835,7 @@ It also supports cascade for deleting/saving, fine grained cascade configuration
     }
 
     public class Instructor {
-      ... 
+      ...
       @OneToMany(mappedBy="instructor",
                  cascade={CascadeType.PERSIST, CascadeType.MERGE,
                           CascadeType.DETACH, CascadeType.REFRESH})
@@ -883,10 +846,23 @@ It also supports cascade for deleting/saving, fine grained cascade configuration
 
 ### Fetch types
 
-When retrieving data we can use:
+The best practice in industry is only load data when its needed.
+When retrieving data we can use two types of fetch:
 
 - Eager (**retrieve all data**)
-- Lazy loading (**retrieve data on request**)
+- Lazy loading (**retrieve data on demand**):
+  \*\* its the preferred approach, to avoid performance issues, but need to keep in mind that there are exeeptions to the rule.
+  Lazy needs an open db connection. If not, will throw an exception
+
+The defaults for each annotation are:
+
+- `@OneToOne`: Eager
+- `@OneToMany`: Lazy
+- `@ManyToOne`: Eager
+- `@ManyToMany`: Lazy
+
+Can be overrided:
+`@OneToMany(fetch=FetchType.EAGER, mappedBy="instructor)`
 
 ## Entity Lifecycle
 
